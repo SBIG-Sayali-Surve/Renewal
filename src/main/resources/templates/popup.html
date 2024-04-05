@@ -1,0 +1,229 @@
+<style>
+#tab {
+	text-align: center;
+	position: absolute;
+	top: 85%;
+	left: 1%;
+	right: 1%;
+}
+</style>
+
+<fieldset
+	class="container-xl bg-white border rounded-4 position-absolute top-50 start-50 translate-middle"
+	id="tab1">
+	<legend class="">
+
+		<span><b>Policy Details</b></span>
+		<button id="button" onclick="myFunction1()"><i class="fa fa-close"></i></button>
+	</legend>
+	<!-- <td class="text-center align-middle" th:text="${policy.trackingId}"
+		onclick="myFunctionPopUp()"></td>
+	<td class="text-center align-middle" th:text="${policy.creationTime}"></td>
+	<td class="text-center align-middle" th:text="${policy.source}"></td>
+	<td class="text-center align-middle" th:text="${policy.irCode}"></td>
+	<td class="text-center align-middle" th:text="${policy.partyID}"></td>
+	<td class="text-center align-middle" th:text="${policy.policyNo}"></td>
+	<td class="text-center align-middle" th:text="${policy.eiaNo}"></td>
+	<td class="text-center align-middle" th:text="${policy.createEIA_TRID}"></td>
+	<td class="text-center align-middle"
+		th:text="${policy.createEIA_Status}"></td>
+ -->
+	<section class="d-flex flex-wrap">
+
+		<div class="border border-primary p-3 m-2 col-auto rounded-3" id="tab">
+			<table class="table" th:each="policy: ${policies}">
+				<thead>
+					<tr>
+						<td><b>Tracking Id :</b></td>
+						<td class="text-center align-middle"
+							th:text="${policy.trackingId}"></td>
+					</tr>
+					<tr>
+						<td><b>IR Code :</b></td>
+						<td class="text-center align-middle" th:text="${policy.irCode}"></td>
+
+
+					</tr>
+					<tr>
+						<td><b>Party Id :</b></td>
+						<td class="text-center align-middle" th:text="${policy.partyID}"></td>
+
+
+					</tr>
+					<tr>
+						<td><b>Policy Number :</b></td>
+						<td class="text-center align-middle" th:text="${policy.policyNo}"></td>
+
+
+					</tr>
+					<tr>
+						<td><b>EIA Number :</b></td>
+						<td class="text-center align-middle" th:text="${policy.eiaNo}"></td>
+
+
+					</tr>
+					<tr>
+						<td><b>Source :</b></td>
+						<td class="text-center align-middle" th:text="${policy.source}"></td>
+
+
+					</tr>
+					<tr>
+						<td><b>Created EIA_TRID :</b></td>
+						<td class="text-center align-middle"
+							th:text="${policy.createEIA_TRID}"></td>
+
+
+					</tr>
+					<tr>
+						<td><b>Created EIA_Status :</b></td>
+						<td class="text-center align-middle"
+							th:text="${policy.createEIA_Status}"></td>
+
+					</tr>
+					<tr>
+						<td><b>Policy Credit_TRID :</b></td>
+						<td class="text-center align-middle"
+							th:text="${policy.policyCredit_TRID}"></td>
+
+					</tr>
+					<tr>
+						<td><b>Policy Credit_Status :</b></td>
+						<td class="text-center align-middle"
+							th:text="${policy.policyCredit_Status}"></td>
+
+					</tr>
+					<tr>
+						<td><b>Status :</b></td>
+						<td class="text-center align-middle" th:text="${policy.status}"></td>
+
+					</tr>
+					<tr>
+						<td><b>Attribute1 :</b></td>
+						<td class="text-center align-middle"
+							th:text="${policy.attribute1}"></td>
+
+					</tr>
+					<tr>
+						<td><b>Attribute2 :</b></td>
+						<td class="text-center align-middle"
+							th:text="${policy.attribute2}"></td>
+
+					</tr>
+					<tr>
+						<td><b>Attribute3 :</b></td>
+						<td class="text-center align-middle"
+							th:text="${policy.attribute3}"></td>
+
+					</tr>
+					<tr>
+						<td><b>Creation Time :</b></td>
+						<td class="text-center align-middle"
+							th:text="${policy.creationTime}"></td>
+
+
+					</tr>
+
+				</thead>
+
+				<!-- <b>Tracking Id :</b><i>e37cd534-6f60-40b1-a6ca-92651d17b742</i> 
+			
+
+		</div>
+
+		  <div class="border border-primary p-3 m-2 col-auto rounded-3">
+
+			<b>IR Code : </b><i>1</i>
+
+		</div>
+
+		<div class="border border-primary p-3 m-2 col-auto rounded-3">
+
+			<b>Party Id : </b><i>PH74883244</i>
+
+		</div>
+
+		<div class="border border-primary p-3 m-2 col-auto rounded-3">
+
+			<b>Policy Number : </b><i>124378123947</i>
+
+		</div>
+
+		<div class="border border-primary p-3 m-2 col-auto rounded-3">
+
+			<b>EIA Number : </b><i>87592348</i>
+
+		</div>
+
+		<div class="border border-primary p-3 m-2 col-auto rounded-3">
+
+			<b>Source : </b><i>BaNCS</i>
+
+		</div>
+
+		<div class="border border-primary p-3 m-2 col-auto rounded-3">
+
+			<b>Created EIA_TRID : </b><i>1020858031334761011202267</i>
+
+		</div>
+
+		<div class="border border-primary p-3 m-2 col-auto rounded-3">
+
+			<b>Created EIA_Status : </b><i>Success</i>
+
+		</div>
+
+		<div class="border border-primary p-3 m-2 col-auto rounded-3">
+
+			<b>Policy Credit_TRID : </b><i>1020858031334761011202267</i>
+
+		</div>
+
+		<div class="border border-primary p-3 m-2 col-auto rounded-3">
+
+			<b>Policy Credit_Status : </b><i>Success</i>
+
+		</div>
+
+		<div class="border border-primary p-3 m-2 col-auto rounded-3">
+
+			<b>Status : </b><i>Policy Credit Success</i>
+
+		</div>
+
+		<div class="border border-primary p-3 m-2 col-auto rounded-3">
+
+			<b>Attribute1 : </b><i></i>
+
+		</div>
+
+		<div class="border border-primary p-3 m-2 col-auto rounded-3">
+
+			<b>Attribute2 : </b><i></i>
+
+		</div>
+
+		<div class="border border-primary p-3 m-2 col-auto rounded-3">
+
+			<b>Attribute3 : </b><i></i>
+
+		</div>
+
+		<div class="border border-primary p-3 m-2 col-auto rounded-3">
+
+			<b>Creation Time : </b><i>2023-03-23T00:00:00.000+05:30</i>
+
+		</div> -->
+			</table>
+		</div>
+
+	</section>
+
+</fieldset>
+<script>
+	function myFunction1() {
+		{
+			document.getElementById("popUp").innerHTML = "";
+		}
+	}
+</script>

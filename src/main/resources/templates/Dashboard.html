@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<title>Renewal Policy Details</title>
+<link th:href="@{/css/bootstrap.css}" rel="stylesheet" />
+<script th:src="@{/js/bootstrap.js}" type="text/javascript"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+	<div
+		class="container rounded-4 p-2 mt-2 mx-auto shadow-lg bg-light bg-gradient border">
+		<h2>Renewal Policy Details</h2>
+		<form>
+			<div class="row g-3 align-items-center">
+				<div class="col-auto">
+					<label for="inputPassword6" class="col-form-label">Start
+						Date</label>
+				</div>
+				<div class="col-auto">
+					<input type="datetime-local" value="2023-06-12T19:30"
+						class="form-control" />
+				</div>
+				<div class="col-auto">
+					<label for="inputPassword6" class="col-form-label">End Date</label>
+				</div>
+				<div class="col-auto">
+					<input type="datetime-local" value="2023-06-13T19:30"
+						class="form-control" />
+				</div>
+				<div class="col-auto">
+					<button class="btn btn-primary" id="submit">Submit</button>
+				</div>
+
+			</div>
+		</form>
+	</div>
+
+	<div
+		class="container rounded-4 p-2 mt-2 mx-auto shadow-lg bg-light bg-gradient border"
+		id="details">
+		<div class="btn-toolbar justify-content-between rounded-4"
+			role="toolbar" id="details">
+			<div>
+				<select id="filter" onChange={props.range} class="form-select"
+					aria-label=".form-select-sm example">
+					<option value="10">10</option>
+					<option value="20">20</option>
+					<option value="30">30</option>
+
+				</select>
+			</div>
+			<div>
+				<input type="text" id="tableSearch" class="form-control"
+					placeholder="Search" onKeyUp="search()" />
+			</div>
+		</div>
+
+		<table class="table table-hover table-striped my-2">
+			<thead class="table-dark">
+				<tr>
+					<th class="text-center">Tracking Id</th>
+					<th class="text-center">Party ID</th>
+					<th class="text-center">Policy Number</th>
+					<th class="text-center">Source</th>
+					<th class="text-center">Policy Credit Status</th>
+					<th class="text-center">Creation Time</th>
+					<th class="text-center">Error details</th>
+					<th class="text-center">IR code</th>
+					<th class="text-center">Rn</th>
+
+				</tr>
+			</thead>
+			<tbody id="tbody">
+				<!--  <tr>
+					<td class="text-center align-middle">e37cd534-6f60-40b1-a6ca-92651d17b742</td>
+					<td class="text-center align-middle">PH74883244</td>
+					<td class="text-center align-middle">124378123947</td>
+					<td class="text-center align-middle">87592348</td>
+					<td class="text-center align-middle">BaNCS</td>
+					<td class="text-center align-middle">1020858031334761011202267</td>
+					<td class="text-center align-middle">Success</td>
+					<td class="text-center align-middle">2023-03-23T00:00:00.000+05:30</td>
+					<td class="text-center"><button class="btn btn-primary" onclick="myFunction()">View</button></td>
+				</tr>-->
+			</tbody>
+		</table>
+		<nav id="pagination"
+			class="btn-toolbar justify-content-between m-0 rounded-bottom"
+			aria-label="Page navigation example" role="toolbar">
+			<p class="text-dark my-auto">Page No.: 0</p>
+			<div class="pagination btn-group">
+				<button type="button" id="previous"
+					class="page-item page-link rounded-left btn btn-primary">Prev</button>
+				<button type="button" id="button1" class="page-item page-link btn">0</button>
+				<button type="button" id="button2" class="page-item page-link btn">1</button>
+				<button type="button" id="button3" class="page-item page-link btn">2</button>
+				<button type="button" id="next"
+					class="page-item page-link rounded-left btn btn-secondary">Next</button>
+			</div>
+		</nav>
+	</div>
+	<!-- <div id="popUp" style="display: none;"
+		class="container-xl bg-white border rounded-4 position-absolute top-50 start-50 translate-middle">
+		<fieldset>
+			<legend class="">
+				<span><b>Policy Details</b></span>
+				<button id="button" onclick="myFunction()">Close</button>
+			</legend>
+			<section class="d-flex flex-wrap">
+				<div class="border border-blue-500 p-3 m-2 col-auto rounded-lg">
+					<b>Tracking Id : </b><i>{record.trackingId}</i>
+				</div>
+				<div class="border border-blue-500 p-3 m-2 col-auto rounded-lg">
+					<b>InsureMO Policy Id : </b><i>{record.insuremoPolicyId}</i>
+				</div>
+				<div class="border border-blue-500 p-3 m-2 col-auto rounded-lg">
+					<b>Status : </b><i>{record.status}</i>
+				</div>
+				<div class="border border-blue-500 p-3 m-2 col-auto rounded-lg">
+					<b>Party Id : </b><i>{record.policycreationPartyStageData.partyId}</i>
+				</div>
+				<div class="border border-blue-500 p-3 m-2 col-auto rounded-lg">
+					<b>First Name : </b><i>{record.policycreationPartyStageData.firstName}</i>
+				</div>
+				<div class="border border-blue-500 p-3 m-2 col-auto rounded-lg">
+					<b>Last Name : </b><i>{record.policycreationPartyStageData.lastName}</i>
+				</div>
+				<div class="border border-blue-500 p-3 m-2 col-auto rounded-lg">
+					<b>Proposal No.: </b><i>{record.policycreationProposalStageData.proposalNumber}</i>
+				</div>
+				<div class="border border-blue-500 p-3 m-2 col-auto rounded-lg">
+					<b>Collection No.: </b><i>{record.policycreationCollectionStageData.collectionNumber}</i>
+				</div>
+				<div class="border border-blue-500 p-3 m-2 col-auto rounded-lg">
+					<b>Voucher No.: </b><i>{record.policycreationCollectionStageData.voucherNumber}</i>
+				</div>
+				<div class="border border-blue-500 p-3 m-2 col-auto rounded-lg">
+					<b>TCS Policy No.: </b><i>{record.policycreationIssuepolicyStageData.tcsPolicyNumber}</i>
+				</div>
+			</section>
+		</fieldset>
+	</div> -->
+	<div id=popUp></div>
+</body>
+<script>
+	
+</script>
+<!-- <script>
+	const targetDiv = document.getElementById("popUp");
+	const btn = document.getElementById("button");
+	btn.onclick = function() {
+		if (targetDiv.style.display !== "none") {
+			targetDiv.style.display = "none";
+		} else {
+			targetDiv.style.display = "block";
+		}
+	};
+</script> -->
+<!-- <script>
+	function myFunction() {
+		{
+			if (document.getElementById("popUp").style.display === "none")
+				document.getElementById("popUp").style.display = "block";
+			else
+				document.getElementById("popUp").style.display = "none";
+		}
+	}
+</script> -->
+<!-- <script>
+$(document).ready(function () {
+    $("#submit").click(function (e) {
+        e.preventDefault();
+        // Get the data you want to submit
+        var data = {
+            startDate: $("#startDate").val(),
+            endDate: $("#endDate").val()
+        };
+        // Send a GET request to fetch data from the API
+        $.ajax({
+            type: "GET",
+            url: "http://localhost:8080/CeIA/",
+            dataType: 'json',
+            cache: false,
+            timeout: 60000,
+            success: function (data) {
+                if (data != null) {
+                    console.log("inside success");
+                    // Clear the table body
+                    $("#tbody").empty();
+                    // Loop through the data and add rows to the table
+                    data.forEach(function(item) {
+                        var row = "<tr><td>" + item.trackingId + "</td><td>" + item.partyId + "</td><td>" + item.policyNumber + "</td><td>" + item.eiaNo + "</td><td>" + item.status + "</td></tr>";
+                        $("#tbody").append(row);
+                    });
+                }
+            },
+            error: function () {
+                console.log("inside error");
+            }
+        });
+
+        </script> -->
+
+<script>
+	document.getElementById("submit").addEventListener("click", function(e) {
+		e.preventDefault();
+		var xhr = new XMLHttpRequest();
+		var err;
+		xhr.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				document.getElementById("tbody").innerHTML = this.responseText;
+			}
+		};
+		xhr.open("GET", "/CEIA/formData", true);
+		xhr.send();
+
+		if (err) {
+			console.log("error");
+		}
+	});
+</script>
+
+<script type="text/javascript">
+	function search() {
+		console.log("Search initiated");
+		var filter, table, tr, td, i, txtValue;
+		filter = document.querySelector("#tableSearch").value.toUpperCase();
+		table = document.querySelector("#policylist");
+		tr = table.getElementsByTagName("tr");
+		for (i = 0; i < tr.length; i++) {
+			td = tr[i].getElementsByTagName("td")[1];
+			if (td) {
+				txtValue = td.textContent || td.innerText;
+				if (txtValue.toUpperCase().indexOf(filter) > -1) {
+					console.log("remove");
+					tr[i].classList.remove("d-none");
+				} else {
+					console.log("add");
+					tr[i].classList.add("d-none");
+				}
+			}
+		}
+	}
+</script>
+<!--   <script>
+	$(document).ready(function() {
+		$("#submit").click(function(e) {
+			e.preventDefault();
+			var search = {};
+			$.ajax({
+				type : "GET",
+				contentType : "application/json",
+				url : "http://localhost:8080/CeIA/",
+				headers: {
+			        'Content-Type': 'application/x-www-form-urlencoded'
+			    },
+				data : JSON.stringify(search),
+				dataType : 'html',
+				cache : false,
+				timeout : 60000,
+				success : function(data) {
+					if (data != null) {
+						console.log("inside success");
+						$("#tbody").html(data);
+					}
+				},
+				error : function() {
+					console.log("inside error");
+				}
+			});
+		});
+	});
+</script> -->
+<script>
+	function myFunctionPopUp(policyNo) {
+		var search = {};
+		search["policyNo"] = policyNo;
+		$.ajax({
+			type : "POST",
+			contentType : "application/json",
+			url : "/CEIA/popUpDetails",
+			data : JSON.stringify(search),
+			dataType : 'html',
+			cache : false,
+			timeout : 60000,
+			success : function(data) {
+				if (data != null) {
+					console.log("inside success");
+					$("#popUp").html(data);
+				}
+			},
+			error : function() {
+				console.log("inside error");
+			}
+		});
+	}
+</script>
+<script>
+	function myFunctionPopUp() {
+		 		$(".view").click(function(e) {
+		 
+		e.preventDefault();
+		console.log("Sring ");
+		var search = {};
+		$.ajax({
+			type : "POST",
+			contentType : "application/json",
+			url : "CEIA/popUpDetails",
+			dataType : 'html',
+			cache : false,
+			timeout : 60000,
+			success : function(data) {
+				if (data != null) {
+					console.log("inside success");
+					$("#popUp").html(data);
+				}
+			},
+			error : function() {
+				console.log("inside error");
+			}
+		});
+	}
+</script>
+
+<!-- <script>
+	function myFunctionPopUp() {
+		console.log("Sring ");
+		if (document.getElementById("popUp").style.display === "none") {
+			document.getElementById("popUp").style.display = "block";
+		} else {
+			document.getElementById("popUp").style.display = "none";
+		}
+	}
+</script> -->
+<!-- <script>
+	function myFunctionPopUp() {
+		document.getElementById('#popup').style.display == 'block';
+	}
+</script> -->
+<script>
+	,function myFunction() {
+		{
+			document.getElementById("popUp").innerHTML = "";
+		}
+	}
+	
+</script>
+</html>
