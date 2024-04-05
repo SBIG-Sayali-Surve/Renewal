@@ -1,10 +1,10 @@
-package in.sbigeneral.ceia;
+package in.sbigeneral.renewal;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class CeiaApplicationTests {
+class RenewalApplicationTests {
 
 	@Test
 	void contextLoads() {

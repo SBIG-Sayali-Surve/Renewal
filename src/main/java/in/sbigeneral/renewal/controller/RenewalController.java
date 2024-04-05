@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import in.sbigeneral.Renewal.Model.RenewalDetails;
-import in.sbigeneral.Renewal.Service.RenewalService;
+import in.sbigeneral.renewal.Model.RenewalDetails;
+import in.sbigeneral.renewal.Service.RenewalService;
 
 
 @Controller

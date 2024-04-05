@@ -1,19 +1,16 @@
 package in.sbigeneral.renewal.Service;
 
 import java.util.List;
-import java.util.Properties;
 
-import javax.annotation.Resource;
 
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import in.sbigeneral.Renewal.Model.RenewalDetails;
+import in.sbigeneral.renewal.Model.RenewalDetails;
 
 @Service
 public class RenewalServiceImpl implements RenewalService {
@@ -21,10 +18,6 @@ public class RenewalServiceImpl implements RenewalService {
 	@Autowired
 	Environment appProperties;
 	
-	
-	  
-	 
-
 	private final RestTemplate restTemplate = new RestTemplate();
 
 	@Override

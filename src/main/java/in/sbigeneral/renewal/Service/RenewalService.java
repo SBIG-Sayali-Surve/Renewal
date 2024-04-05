@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import in.sbigeneral.Renewal.Model.RenewalDetails;
+import in.sbigeneral.renewal.Model.RenewalDetails;
 
 @Service
 public interface RenewalService {
