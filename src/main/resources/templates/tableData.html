@@ -1,16 +1,12 @@
-<tr th:each="policy: ${policies}">
-	<td class="text-center align-middle" th:value="${policy.trackingId}">
-		<!--  onclick="myFunctionPopUp()"--></td>
-	<td class="text-center align-middle" th:text="${policy.creationTime}"></td>
-	<td class="text-center align-middle" th:text="${policy.source}"></td>
-	<td class="text-center align-middle" th:text="${policy.status}"></td>
-	<td class="text-center align-middle" th:text="${policy.ircode}"></td>
-	<td class="text-center align-middle" th:text="${policy.partyID}"></td>
-	<td class="text-center align-middle" th:text="${policy.policyNo}"></td>
-	<td class="text-center align-middle" th:text="${policy.eiaNo}"></td>
-	<td class="text-center align-middle" th:text="${policy.createEIA_TRID}"></td>
+<tr th:each="policy,pol: ${policies}">
 	<td class="text-center align-middle"
-		th:text="${policy.createEIA_Status}"></td>
+			th:text="${pol.count}">
+		</td>
+	<td class="text-center align-middle" th:text="${policy.policyNo}"></td>
+	<td class="text-center align-middle" th:text="${policy.policyNo}"></td>
+	<td class="text-center align-middle" th:text="${policy.ebaoCreationDate}"></td>
+	<td class="text-center align-middle" th:text="${policy.bancsCreationDate}"></td>
+	<td class="text-center align-middle" th:text="${policy.bancsCreationDate!=null ? 'Success' : 'Failed'}"></td>
 	<td class="text-center"><button class="btn btn-primary view" onclick="myFunctionPopUp()"
 			 id="view">View</button></td>
 </tr>

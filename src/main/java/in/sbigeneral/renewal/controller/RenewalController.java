@@ -1,27 +1,25 @@
 package in.sbigeneral.renewal.controller;
 
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
+import in.sbigeneral.renewal.Model.FormData;
+import in.sbigeneral.renewal.Model.PolicyDetail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import in.sbigeneral.renewal.Model.RenewalDetails;
 import in.sbigeneral.renewal.Service.RenewalService;
-
+import lombok.RequiredArgsConstructor;
 
 @Controller
+@RequiredArgsConstructor
 public class RenewalController {
 
-	@Autowired
-	RenewalService renewalService;
-
-	@Autowired
-	RenewalDetails renewalDetails;
+	private final RenewalService renewalService;
 
 	@RequestMapping("/")
 	public String home() {
@@ -29,31 +27,18 @@ public class RenewalController {
 	}
 
 	@RequestMapping("/Dashboard")
-	public String dashboard() {
+	public String dashboard(Model model) {
+		LocalDateTime endDate = LocalDateTime.now();
+		LocalDateTime starDate = endDate.minusDays(2);
+		model.addAttribute("formData",new FormData(starDate,endDate,10,0));
 		return "Dashboard";
 	}
 
 	@GetMapping("/formData")
-	public String form(Model model) {
-		System.out.println(" form data ");
-//		  JSONObject inJson = null; 
-//		  JSONParser jParser = new JSONParser(); 
-//		  try { 
-//			  inJson = (JSONObject) jParser.parse(search); 
-//			  } 
-//		  catch (ParseException e) { 
-//			  // TODO Auto-generated catch block 
-//			  e.printStackTrace(); 
-//			  }
-
-//		  String startDate = (String) inJson.get("startDate"); 
-//		  String endDate = (String) inJson.get("endDate"); 
-//		  String ern = (String) inJson.get("range");
-//		 
-		List<RenewalDetails> renewalDetails = renewalService.getPolicyDetailsbyDate();
-		System.out.println(renewalService.getPolicyDetailsbyDate());
-		System.out.println("RenewalList: " + renewalDetails);
-		model.addAttribute("policies", renewalDetails);
+	public String form(@ModelAttribute FormData formData, Model model) {
+		System.out.println(" form data : "+ formData.toString());
+		List<PolicyDetail> policyList=renewalService.getPolicyList();
+		model.addAttribute("policies", policyList);
 		return "tableData";
 	}
 

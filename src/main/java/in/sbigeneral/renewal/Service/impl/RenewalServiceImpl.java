@@ -1,16 +1,21 @@
-package in.sbigeneral.renewal.Service;
+package in.sbigeneral.renewal.Service.impl;
 
 import java.util.List;
 
 
 import java.util.Arrays;
 
+import in.sbigeneral.renewal.Model.PolicyDetail;
+import in.sbigeneral.renewal.Service.RenewalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import in.sbigeneral.renewal.Model.RenewalDetails;
+import org.springframework.web.util.UriBuilder;
+import org.springframework.web.util.UriComponents;
+import org.springframework.web.util.UriComponentsBuilder;
 
 @Service
 public class RenewalServiceImpl implements RenewalService {
@@ -57,6 +62,13 @@ public class RenewalServiceImpl implements RenewalService {
 		//List<CeiaDetails> policyList = ceiaApi.getResponceForApi();
 		System.out.println(policyList);
 		return policyList;
+	}
+
+	@Override
+	public List<PolicyDetail> getPolicyList() {
+		UriComponents uriComponents = UriComponentsBuilder.newInstance().scheme("http").host("localhost").port("8080").path("/policyList").build();
+		PolicyDetail[] policyDetailList = restTemplate.getForObject(uriComponents.toUriString(), PolicyDetail[].class);
+		return Arrays.asList(policyDetailList);
 	}
 
 	@Override

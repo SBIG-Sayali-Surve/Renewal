@@ -2,6 +2,7 @@ package in.sbigeneral.renewal.Service;
 
 import java.util.List;
 
+import in.sbigeneral.renewal.Model.PolicyDetail;
 import org.springframework.stereotype.Service;
 
 import in.sbigeneral.renewal.Model.RenewalDetails;
@@ -15,6 +16,5 @@ public interface RenewalService {
 	public List<RenewalDetails> getPolicyDetailsbyDate();
 
 
-
-	
+	List<PolicyDetail> getPolicyList();
 }

@@ -1,10 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+<nav id="pagination" class="btn-toolbar justify-content-between m-0 rounded-bottom" aria-label="Page navigation example"
+    role="toolbar">
+    <form class="text-dark my-auto" th:object="${formData}">
+        <input id="pageNo" class="form-control" th:field="*{pageNo}" readonly>
+    </form>
+    <div class="pagination btn-group">
+        <button type="button" id="previous" class="page-item page-link rounded-left btn btn-primary">Prev</button>
+        <button type="button" id="button1" class="page-item page-link btn">0</button>
+        <button type="button" id="button2" class="page-item page-link btn">1</button>
+        <button type="button" id="button3" class="page-item page-link btn">2</button>
+        <button type="button" id="next" class="page-item page-link rounded-left btn btn-secondary">Next</button>
+    </div>
+</nav>

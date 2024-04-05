@@ -1,10 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+<div class="btn-toolbar justify-content-between rounded-4"
+     role="toolbar">
+    <form th:object="${formData}"
+          th:hx-get="@{/formData}" hx-trigger="change" hx-target="#tbody"
+          hx-include="#startDate,#endDate,#pageNo"
+          hx-swap="innerHTML transition:true">
+        <select id="pageSize" class="form-select" th:field="*{pageSize}">
+            <option th:value="10">10</option>
+            <option th:value="20">20</option>
+            <option th:value="30">30</option>
+        </select>
+    </form>
+    <div id="formSpinner"
+         class="spinner-border text-primary htmx-indicator" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+    <div>
+        <input type="text" id="tableSearch" class="form-control"
+               placeholder="Search..." onkeyup="search()" />
+    </div>
+</div>
